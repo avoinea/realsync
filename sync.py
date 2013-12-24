@@ -91,7 +91,7 @@ class Sync(object):
         """ Log file
         """
         if self._logfile is None:
-            self._logfile = os.path.join(self.folder, self.folder + u'.log')
+            self._logfile = os.path.join(self.folder, self.folder + u'.sync.log')
         return self._logfile
 
     def initialize(self):
@@ -296,14 +296,14 @@ def main(*a, **kw):
     if args.end:
         options['end'] = args.end
 
-    sync = Sync(**options)
+    server = Sync(**options)
 
     try:
-        sync.start()
+        server.start()
     except KeyboardInterrupt:
-        sync.stop()
+        server.stop()
     except Exception as error:
-        sync.stop(error)
+        server.stop(error)
 
 
 if __name__ == "__main__":
